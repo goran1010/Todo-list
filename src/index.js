@@ -3,7 +3,9 @@ import "./fonts/Autography.otf";
 import "./fonts/Roboto-Regular.ttf";
 
 import { format } from "date-fns";
-import Project from "./scripts/project.js";
+import Project from "./scripts/project";
+import updateProjectDisplay from "./scripts/updateProjectDisplay";
+import updateAllProjectsDisplay from "./scripts/updateAllProjectsDisplay";
 
 const allProjects = [];
 
@@ -25,5 +27,10 @@ newProjectDescriptionInput.addEventListener(`keyup`, () => {
 createNewProjectButton.addEventListener(`click`, () => {
   let newProject = new Project(newProjectName, newProjectDescription);
   allProjects.push(newProject);
-  console.log(allProjects);
+  updateProjectDisplay(
+    newProjectName,
+    newProjectDescription,
+    newProject.projectDateCreated
+  );
+  updateAllProjectsDisplay(allProjects);
 });
