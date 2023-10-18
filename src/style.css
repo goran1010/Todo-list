@@ -1,0 +1,90 @@
+@font-face {
+  font-family: "Roboto";
+  src: url("./fonts/Roboto-Regular.ttf");
+}
+@font-face {
+  font-family: "Autography";
+  src: url("./fonts/Autography.otf");
+}
+
+* {
+  font-family: "Roboto", Arial, Helvetica, sans-serif;
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  border: 1px solid black;
+}
+body {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+main {
+  gap: 1rem;
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 4fr;
+  background-color: darkgrey;
+}
+header {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  font-size: 1.5rem;
+  justify-content: space-between;
+}
+header input {
+  font-size: 1.5rem;
+}
+header > button {
+  color: white;
+  background-color: blue;
+  border: 2px solid black;
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+}
+aside {
+  background-color: lightgray;
+  display: grid;
+  grid-template-rows: 1fr 6fr;
+}
+.aside-upper {
+  display: grid;
+  align-items: center;
+  justify-content: center;
+}
+.aside-projects {
+  overflow-x: auto;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  width: 90%;
+  justify-self: center;
+}
+.right {
+  background-color: lightgray;
+  display: grid;
+  grid-template-rows: 1fr 6fr;
+}
+.content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.cards {
+  width: 90%;
+  height: 90%;
+  border-radius: 5px;
+  box-shadow: 0 0 10px black;
+  background-color: white;
+}
+footer {
+  background-color: darkgray;
+  min-height: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: auto;
+  font-family: "Autography", Arial, Helvetica, sans-serif;
+  font-weight: bold;
+}

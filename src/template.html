@@ -3,7 +3,38 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
+    <title>Todo List</title>
   </head>
-  <body></body>
+  <body>
+    <main>
+      <aside>
+        <div class="aside-upper">
+          <h2>My Projects</h2>
+        </div>
+        <div class="aside-projects"></div>
+      </aside>
+      <div class="right">
+        <header>
+          <div class="name">
+            <label for="project-name">Name of the Project</label>
+            <input
+              type="text"
+              id="project-name"
+              value="Birthday"
+              placeholder="Party Supplies"
+            />
+          </div>
+          <div class="description">
+            <label for="project-description"
+              >Write a short description for the project</label
+            >
+            <input type="text" value="Some-text" id="project-description" />
+          </div>
+          <button>Create a new Project</button>
+        </header>
+        <div class="content"><div class="cards"></div></div>
+      </div>
+    </main>
+    <footer>Made by Goran</footer>
+  </body>
 </html>
