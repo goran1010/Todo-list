@@ -4,7 +4,7 @@ import "./fonts/Roboto-Regular.ttf";
 
 import { format } from "date-fns";
 import Project from "./scripts/project";
-import updateProjectDisplay from "./scripts/updateProjectDisplay";
+import updateCurrentProjectDisplay from "./scripts/updateCurrentProjectDisplay";
 import updateAllProjectsDisplay from "./scripts/updateAllProjectsDisplay";
 
 const allProjects = [];
@@ -27,10 +27,6 @@ newProjectDescriptionInput.addEventListener(`keyup`, () => {
 createNewProjectButton.addEventListener(`click`, () => {
   let newProject = new Project(newProjectName, newProjectDescription);
   allProjects.push(newProject);
-  updateProjectDisplay(
-    newProjectName,
-    newProjectDescription,
-    newProject.projectDateCreated
-  );
+  updateCurrentProjectDisplay(allProjects[allProjects.length - 1]);
   updateAllProjectsDisplay(allProjects);
 });

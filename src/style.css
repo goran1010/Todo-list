@@ -9,9 +9,11 @@
 
 * {
   font-family: "Roboto", Arial, Helvetica, sans-serif;
-  padding: 0;
   margin: 0;
   box-sizing: border-box;
+
+  padding: 1rem;
+  border: 1px solid black;
 }
 body {
   height: 100vh;
@@ -49,7 +51,6 @@ aside {
   justify-content: center;
 }
 .aside-projects {
-  overflow-x: auto;
   overflow-y: auto;
   display: flex;
   flex-direction: column;

@@ -1,3 +1,5 @@
+import updateCurrentProjectDisplay from "./updateCurrentProjectDisplay";
+
 export default function updateAllProjectsDisplay(allProjects) {
   while (document.querySelector(`.aside-projects`).firstChild) {
     document
@@ -13,9 +15,7 @@ export default function updateAllProjectsDisplay(allProjects) {
 
     deleteProjectButton.textContent = "x";
     deleteProjectButton.addEventListener(`click`, () => {
-      console.log(index);
       allProjects.splice(index, 1);
-      console.log(allProjects);
       updateAllProjectsDisplay(allProjects);
     });
 
@@ -25,6 +25,10 @@ export default function updateAllProjectsDisplay(allProjects) {
     projectCard.appendChild(deleteProjectButton);
     projectCard.appendChild(projectName);
     projectCard.appendChild(projectDescription);
+
+    projectCard.addEventListener(`click`, () => {
+      updateCurrentProjectDisplay(project);
+    });
     document.querySelector(`.aside-projects`).appendChild(projectCard);
   });
 }

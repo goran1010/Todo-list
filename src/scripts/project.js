@@ -7,8 +7,8 @@ export default class Project {
     this.projectDateCreated = new Date();
     this.allTodos = [];
   }
-  createNewTodo(name) {
-    let newTodo = new Todo(this.projectName, name);
+  createNewTodo(name, description) {
+    let newTodo = new Todo(name, description);
     this.allTodos.push(newTodo);
   }
 }
