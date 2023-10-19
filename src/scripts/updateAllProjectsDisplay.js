@@ -19,9 +19,8 @@ export default function updateAllProjectsDisplay(allProjects) {
       event.stopPropagation();
       allProjects.splice(index, 1);
       updateAllProjectsDisplay(allProjects);
-      if (allProjects.length === 0) {
-        updateCurrentProjectDisplay(null, allProjects);
-      }
+
+      updateCurrentProjectDisplay(allProjects);
     });
 
     projectName.textContent = project.projectName;
@@ -34,7 +33,11 @@ export default function updateAllProjectsDisplay(allProjects) {
     projectCard.appendChild(showProjectID);
 
     projectCard.addEventListener(`click`, () => {
-      updateCurrentProjectDisplay(project, allProjects);
+      allProjects.forEach((project) => {
+        project.isViewed = false;
+      });
+      project.isViewed = true;
+      updateCurrentProjectDisplay(allProjects);
     });
     document.querySelector(`.aside-projects`).appendChild(projectCard);
   });

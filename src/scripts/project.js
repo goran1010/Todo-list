@@ -7,6 +7,7 @@ export default class Project {
     this.projectDateCreated = new Date();
     this.allTodos = [];
     this.projectID = projectID;
+    this.isViewed = true;
   }
   createNewTodo(name, description) {
     let newTodo = new Todo(name, description);

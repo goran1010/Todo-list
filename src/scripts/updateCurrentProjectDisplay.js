@@ -1,15 +1,14 @@
-export default function updateCurrentProjectDisplay(currentProject) {
+export default function updateCurrentProjectDisplay(allProjects) {
   if (document.querySelector(`.content`).firstChild) {
     document
       .querySelector(`.content`)
       .removeChild(document.querySelector(`.content`).firstChild);
   }
 
+  let currentProject = allProjects.find((project) => project.isViewed === true);
   if (!currentProject) {
     return;
   }
-
-  // Should have another check if currentProject isn't in AllProjects ?!
 
   const newTodoNameInput = document.createElement(`input`);
   const newTodoDescriptionInput = document.createElement(`input`);
@@ -23,7 +22,7 @@ export default function updateCurrentProjectDisplay(currentProject) {
       newTodoDescriptionInput.value
     );
 
-    updateCurrentProjectDisplay(currentProject);
+    updateCurrentProjectDisplay(allProjects);
   });
   createNewTodoButton.textContent = `Create a New Todo`;
 
@@ -48,7 +47,7 @@ export default function updateCurrentProjectDisplay(currentProject) {
     deleteTodoButton.textContent = "x";
     deleteTodoButton.addEventListener(`click`, () => {
       currentProject.allTodos.splice(index, 1);
-      updateCurrentProjectDisplay(currentProject);
+      updateCurrentProjectDisplay(allProjects);
     });
 
     todoCard.appendChild(todoName);

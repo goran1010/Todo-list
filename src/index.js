@@ -36,8 +36,9 @@ createNewProjectButton.addEventListener(`click`, () => {
     newProjectDescription,
     projectID
   );
+  allProjects.forEach((project) => (project.isViewed = false));
   allProjects.push(newProject);
-  updateCurrentProjectDisplay(allProjects[allProjects.length - 1], allProjects);
+  updateCurrentProjectDisplay(allProjects);
   updateAllProjectsDisplay(allProjects);
   newProjectNameInput.value = "";
   newProjectDescriptionInput.value = "";
