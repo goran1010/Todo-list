@@ -1,2 +1,3 @@
-# webpack-template
-This is a Webpack Template for all New projects that use it
+# todo-list
+
+Todo list project for TOP
