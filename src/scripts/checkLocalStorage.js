@@ -1,3 +1,6 @@
+import Todo from "./todo";
+import updateCurrentProjectDisplay from "./updateCurrentProjectDisplay";
+import updateAllProjectsDisplay from "./updateAllProjectsDisplay";
 import createDefaultProject from "./createDefaultProject";
 
 export default function (allProjects) {
