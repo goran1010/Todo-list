@@ -9,7 +9,8 @@ import checkLocalStorage from "./scripts/checkLocalStorage";
 
 let allProjects = [];
 
-checkLocalStorage(allProjects);
+allProjects = checkLocalStorage(allProjects);
+console.log(allProjects);
 
 const createNewProjectButton = document.querySelector(`header button`);
 const newProjectNameInput = document.querySelector(`header input#project-name`);
@@ -28,10 +29,8 @@ newProjectDescriptionInput.addEventListener(`keyup`, () => {
 
 createNewProjectButton.addEventListener(`click`, () => {
   let newProject = new Project(newProjectName, newProjectDescription);
-
   allProjects.forEach((project) => (project.isViewed = false));
   allProjects.push(newProject);
-
   localStorage.setItem("allProjects", JSON.stringify(allProjects));
 
   updateCurrentProjectDisplay(allProjects);

@@ -2,6 +2,7 @@ import Todo from "./todo";
 import updateCurrentProjectDisplay from "./updateCurrentProjectDisplay";
 import updateAllProjectsDisplay from "./updateAllProjectsDisplay";
 import createDefaultProject from "./createDefaultProject";
+import Project from "./project";
 
 export default function (allProjects) {
   if (
@@ -9,16 +10,23 @@ export default function (allProjects) {
     JSON.parse(localStorage.getItem("allProjects")).length != 0
   ) {
     allProjects = JSON.parse(localStorage.getItem("allProjects"));
-    allProjects.forEach((project) => {
-      project.createNewTodo = function (name, description) {
-        let newTodo = new Todo(name, description);
-        this.allTodos.push(newTodo);
-      };
-    });
+    for (let i = 0; i < allProjects.length; i++) {
+      let todos = allProjects[i].allTodos;
+      let isViewed = allProjects[i].isViewed;
+      let projectDateCreated = allProjects[i].projectDateCreated;
+      allProjects[i] = new Project(
+        allProjects[i].projectName,
+        allProjects[i].projectDescription
+      );
+      allProjects[i].allTodos = todos;
+      allProjects[i].isViewed = false;
+      allProjects[i].projectDateCreated = projectDateCreated;
+    }
     updateAllProjectsDisplay(allProjects);
     updateCurrentProjectDisplay(allProjects);
+    return allProjects;
   } else {
-    console.log("create Default Project");
     createDefaultProject(allProjects);
+    return allProjects;
   }
 }
