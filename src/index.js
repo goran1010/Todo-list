@@ -2,13 +2,32 @@ import "./style.css";
 import "./fonts/Autography.otf";
 import "./fonts/Roboto-Regular.ttf";
 
-import { format } from "date-fns";
+import Todo from "./scripts/todo";
 import Project from "./scripts/project";
 import updateCurrentProjectDisplay from "./scripts/updateCurrentProjectDisplay";
 import updateAllProjectsDisplay from "./scripts/updateAllProjectsDisplay";
+import createDefaultProject from "./scripts/createDefaultProject";
 
-const allProjects = [];
-let projectID;
+let allProjects = [];
+
+if (
+  localStorage.getItem("allProjects") &&
+  JSON.parse(localStorage.getItem("allProjects")).length != 0
+) {
+  allProjects = JSON.parse(localStorage.getItem("allProjects"));
+  allProjects.forEach((project) => {
+    // project.createNewTodo = function (name, description) {
+    //   let newTodo = new Todo(name, description);
+    //   this.allTodos.push(newTodo);
+    // };
+    project = new Project(project.projectName, project.projectDescription);
+  });
+  updateAllProjectsDisplay(allProjects);
+  updateCurrentProjectDisplay(allProjects);
+} else {
+  console.log("create Default Project");
+  createDefaultProject(allProjects);
+}
 
 const createNewProjectButton = document.querySelector(`header button`);
 const newProjectNameInput = document.querySelector(`header input#project-name`);
@@ -18,7 +37,7 @@ newProjectNameInput.addEventListener(`keyup`, () => {
 });
 
 const newProjectDescriptionInput = document.querySelector(
-  `header input#project-description`
+  `header textarea#project-description`
 );
 let newProjectDescription = newProjectDescriptionInput.value;
 newProjectDescriptionInput.addEventListener(`keyup`, () => {
@@ -26,18 +45,13 @@ newProjectDescriptionInput.addEventListener(`keyup`, () => {
 });
 
 createNewProjectButton.addEventListener(`click`, () => {
-  if (projectID === undefined) {
-    projectID = 0;
-  } else {
-    projectID++;
-  }
-  let newProject = new Project(
-    newProjectName,
-    newProjectDescription,
-    projectID
-  );
+  let newProject = new Project(newProjectName, newProjectDescription);
+
   allProjects.forEach((project) => (project.isViewed = false));
   allProjects.push(newProject);
+
+  localStorage.setItem("allProjects", JSON.stringify(allProjects));
+
   updateCurrentProjectDisplay(allProjects);
   updateAllProjectsDisplay(allProjects);
   newProjectNameInput.value = "";

@@ -5,11 +5,10 @@ export default function updateCurrentProjectDisplay(allProjects) {
       .removeChild(document.querySelector(`.content`).firstChild);
   }
 
-  let currentProject = allProjects.find((project) => project.isViewed === true);
+  let currentProject = allProjects.find((project) => project.isViewed);
   if (!currentProject) {
     return;
   }
-
   const newTodoNameInput = document.createElement(`input`);
   const newTodoDescriptionInput = document.createElement(`input`);
   const cards = document.createElement(`div`);
@@ -21,7 +20,7 @@ export default function updateCurrentProjectDisplay(allProjects) {
       newTodoNameInput.value,
       newTodoDescriptionInput.value
     );
-
+    localStorage.setItem("allProjects", JSON.stringify(allProjects));
     updateCurrentProjectDisplay(allProjects);
   });
   createNewTodoButton.textContent = `Create a New Todo`;
@@ -47,6 +46,7 @@ export default function updateCurrentProjectDisplay(allProjects) {
     deleteTodoButton.textContent = "x";
     deleteTodoButton.addEventListener(`click`, () => {
       currentProject.allTodos.splice(index, 1);
+      localStorage.setItem("allProjects", JSON.stringify(allProjects));
       updateCurrentProjectDisplay(allProjects);
     });
 

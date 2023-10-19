@@ -1,12 +1,12 @@
 import Todo from "./todo.js";
+import { format } from "date-fns";
 
 export default class Project {
-  constructor(newProjectName, newProjectDescription, projectID) {
+  constructor(newProjectName, newProjectDescription) {
     this.projectName = newProjectName;
     this.projectDescription = newProjectDescription;
-    this.projectDateCreated = new Date();
+    this.projectDateCreated = format(new Date(), "yyyy-MM-dd");
     this.allTodos = [];
-    this.projectID = projectID;
     this.isViewed = true;
   }
   createNewTodo(name, description) {

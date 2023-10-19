@@ -10,9 +10,10 @@
 * {
   font-family: "Roboto", Arial, Helvetica, sans-serif;
   margin: 0;
-  box-sizing: border-box;
-
-  border: 1px solid black;
+  box-sizing: content-box;
+}
+button {
+  font-weight: bold;
 }
 body {
   height: 100vh;
@@ -23,28 +24,36 @@ main {
   gap: 1rem;
   flex: 1;
   display: grid;
-  grid-template-columns: 1fr 4fr;
+  grid-template-columns: 1fr 3fr;
   background-color: darkgrey;
 }
 header {
+  background-color: darkgray;
   display: flex;
   flex-wrap: wrap;
-  align-items: center;
+  align-items: stretch;
   justify-content: space-between;
+  padding: 0.5rem 1.5rem;
 }
 header > button {
+  align-self: center;
   color: white;
   background-color: blue;
   border: 2px solid black;
   border-radius: 5px;
   padding: 0.5rem 1rem;
 }
+header > button:active {
+  background-color: rgb(105, 160, 179);
+  border: 2px solid gray;
+}
 aside {
   background-color: lightgray;
   display: grid;
-  grid-template-rows: 1fr 6fr;
+  grid-template-rows: 1fr 5fr;
 }
 .aside-upper {
+  background-color: darkgray;
   display: grid;
   align-items: center;
   justify-content: center;
@@ -53,22 +62,30 @@ aside {
   overflow-y: auto;
   display: flex;
   flex-direction: column;
-  width: 90%;
-  justify-self: center;
+  justify-self: stretch;
+  gap: 1.5rem;
+  padding: 1.5rem 0;
 }
 .right {
   background-color: lightgray;
   display: grid;
-  grid-template-rows: 1fr 6fr;
+  grid-template-rows: 1fr 5fr;
+}
+.name,
+.description {
+  display: flex;
+  flex-direction: column;
 }
 .content {
   display: flex;
   justify-content: center;
   align-items: center;
+  padding: 2rem 1.5rem;
 }
 .cards {
-  width: 90%;
-  height: 90%;
+  padding: 0.5rem;
+  height: 100%;
+  width: 100%;
   border-radius: 5px;
   box-shadow: 0 0 10px black;
   background-color: white;
@@ -82,4 +99,34 @@ footer {
   margin-top: auto;
   font-family: "Autography", Arial, Helvetica, sans-serif;
   font-weight: bold;
+}
+.project-card {
+  background-color: white;
+  border-radius: 5px;
+  box-shadow: 0 0 10px black;
+  padding: 5px;
+  margin: 0 2rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+.project-card:hover {
+  cursor: pointer;
+}
+.viewing {
+  box-shadow: 0 0 10px blue;
+}
+.delete-project {
+  position: absolute;
+  cursor: pointer;
+  background-color: red;
+  font-weight: bold;
+  top: -1.3rem;
+  right: 0;
+  border-radius: 5px 5px 0 0;
+  padding: 2px 2px 0 2px;
+}
+.delete-project:active {
+  background-color: rgb(248, 94, 94);
+  color: darkgrey;
 }

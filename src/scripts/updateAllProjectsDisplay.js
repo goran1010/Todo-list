@@ -1,3 +1,4 @@
+import { format } from "date-fns";
 import updateCurrentProjectDisplay from "./updateCurrentProjectDisplay";
 
 export default function updateAllProjectsDisplay(allProjects) {
@@ -9,15 +10,21 @@ export default function updateAllProjectsDisplay(allProjects) {
 
   allProjects.forEach((project, index) => {
     const projectCard = document.createElement(`div`);
-    const projectName = document.createElement(`h1`);
+    const projectName = document.createElement(`h3`);
     const projectDescription = document.createElement(`p`);
     const deleteProjectButton = document.createElement(`div`);
-    const showProjectID = document.createElement(`div`);
+    const projectDateCreated = document.createElement(`div`);
 
-    deleteProjectButton.textContent = "x";
+    if (project.isViewed) {
+      projectCard.classList.add("viewing");
+    }
+
+    deleteProjectButton.textContent = "DELETE";
+    deleteProjectButton.classList.add("delete-project");
     deleteProjectButton.addEventListener(`click`, (event) => {
       event.stopPropagation();
       allProjects.splice(index, 1);
+      localStorage.setItem("allProjects", JSON.stringify(allProjects));
       updateAllProjectsDisplay(allProjects);
 
       updateCurrentProjectDisplay(allProjects);
@@ -25,18 +32,20 @@ export default function updateAllProjectsDisplay(allProjects) {
 
     projectName.textContent = project.projectName;
     projectDescription.textContent = project.projectDescription;
-    showProjectID.textContent = project.projectID;
+    projectDateCreated.textContent = `${project.projectDateCreated}`;
 
+    projectCard.classList.add("project-card");
     projectCard.appendChild(deleteProjectButton);
     projectCard.appendChild(projectName);
     projectCard.appendChild(projectDescription);
-    projectCard.appendChild(showProjectID);
+    projectCard.appendChild(projectDateCreated);
 
     projectCard.addEventListener(`click`, () => {
       allProjects.forEach((project) => {
         project.isViewed = false;
       });
       project.isViewed = true;
+      updateAllProjectsDisplay(allProjects);
       updateCurrentProjectDisplay(allProjects);
     });
     document.querySelector(`.aside-projects`).appendChild(projectCard);
