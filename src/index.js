@@ -6,11 +6,12 @@ import Project from "./scripts/project";
 import updateCurrentProjectDisplay from "./scripts/updateCurrentProjectDisplay";
 import updateAllProjectsDisplay from "./scripts/updateAllProjectsDisplay";
 import checkLocalStorage from "./scripts/checkLocalStorage";
+import Todo from "./scripts/todo";
+import createDefaultProject from "./scripts/createDefaultProject";
 
 let allProjects = [];
 
 allProjects = checkLocalStorage(allProjects);
-console.log(allProjects);
 
 const createNewProjectButton = document.querySelector(`header button`);
 const newProjectNameInput = document.querySelector(`header input#project-name`);
