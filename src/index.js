@@ -8,6 +8,7 @@ import updateCurrentProjectDisplay from "./scripts/updateCurrentProjectDisplay";
 import updateAllProjectsDisplay from "./scripts/updateAllProjectsDisplay";
 
 const allProjects = [];
+let projectID;
 
 const createNewProjectButton = document.querySelector(`header button`);
 const newProjectNameInput = document.querySelector(`header input#project-name`);
@@ -25,8 +26,19 @@ newProjectDescriptionInput.addEventListener(`keyup`, () => {
 });
 
 createNewProjectButton.addEventListener(`click`, () => {
-  let newProject = new Project(newProjectName, newProjectDescription);
+  if (projectID === undefined) {
+    projectID = 0;
+  } else {
+    projectID++;
+  }
+  let newProject = new Project(
+    newProjectName,
+    newProjectDescription,
+    projectID
+  );
   allProjects.push(newProject);
-  updateCurrentProjectDisplay(allProjects[allProjects.length - 1]);
+  updateCurrentProjectDisplay(allProjects[allProjects.length - 1], allProjects);
   updateAllProjectsDisplay(allProjects);
+  newProjectNameInput.value = "";
+  newProjectDescriptionInput.value = "";
 });

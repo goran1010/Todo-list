@@ -12,22 +12,29 @@ export default function updateAllProjectsDisplay(allProjects) {
     const projectName = document.createElement(`h1`);
     const projectDescription = document.createElement(`p`);
     const deleteProjectButton = document.createElement(`div`);
+    const showProjectID = document.createElement(`div`);
 
     deleteProjectButton.textContent = "x";
-    deleteProjectButton.addEventListener(`click`, () => {
+    deleteProjectButton.addEventListener(`click`, (event) => {
+      event.stopPropagation();
       allProjects.splice(index, 1);
       updateAllProjectsDisplay(allProjects);
+      if (allProjects.length === 0) {
+        updateCurrentProjectDisplay(null, allProjects);
+      }
     });
 
     projectName.textContent = project.projectName;
     projectDescription.textContent = project.projectDescription;
+    showProjectID.textContent = project.projectID;
 
     projectCard.appendChild(deleteProjectButton);
     projectCard.appendChild(projectName);
     projectCard.appendChild(projectDescription);
+    projectCard.appendChild(showProjectID);
 
     projectCard.addEventListener(`click`, () => {
-      updateCurrentProjectDisplay(project);
+      updateCurrentProjectDisplay(project, allProjects);
     });
     document.querySelector(`.aside-projects`).appendChild(projectCard);
   });
