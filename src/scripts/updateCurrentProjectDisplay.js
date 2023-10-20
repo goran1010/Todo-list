@@ -9,10 +9,28 @@ export default function updateCurrentProjectDisplay(allProjects) {
   if (!currentProject) {
     return;
   }
+
+  const projectName = document.createElement(`h3`);
+  const projectDescription = document.createElement(`p`);
+  const projectDateCreated = document.createElement(`p`);
+  projectName.textContent = `${currentProject.projectName}`;
+  projectDescription.textContent = `${currentProject.projectDescription}`;
+  projectDateCreated.textContent = `Date created: ${currentProject.projectDateCreated}`;
+
+  const projectHeader = document.createElement(`div`);
+  const projectBody = document.createElement(`div`);
   const newTodoNameInput = document.createElement(`input`);
-  const newTodoDescriptionInput = document.createElement(`input`);
+  const newTodoNameLabel = document.createElement(`h4`);
+  const newTodoDescriptionInput = document.createElement(`textarea`);
+  newTodoDescriptionInput.setAttribute("rows", 3);
+  const newTodoDescriptionLabel = document.createElement(`h4`);
   const cards = document.createElement(`div`);
   cards.classList.add(`cards`);
+  projectHeader.classList.add(`project-header`);
+  projectBody.classList.add(`project-body`);
+
+  newTodoNameLabel.textContent = "Todo Name: ";
+  newTodoDescriptionLabel.textContent = "Todo Description: ";
 
   const createNewTodoButton = document.createElement(`button`);
   createNewTodoButton.addEventListener(`click`, () => {
@@ -25,36 +43,41 @@ export default function updateCurrentProjectDisplay(allProjects) {
   });
   createNewTodoButton.textContent = `Create a New Todo`;
 
-  cards.textContent = `
-  ${currentProject.projectName},
-  ${currentProject.projectDescription},
-  ${currentProject.projectDateCreated}`;
+  projectHeader.appendChild(projectName);
+  projectHeader.appendChild(projectDescription);
+  projectHeader.appendChild(projectDateCreated);
 
-  cards.appendChild(newTodoNameInput);
-  cards.appendChild(newTodoDescriptionInput);
-  cards.appendChild(createNewTodoButton);
+  projectHeader.appendChild(newTodoNameLabel);
+  projectHeader.appendChild(newTodoNameInput);
+  projectHeader.appendChild(newTodoDescriptionLabel);
+  projectHeader.appendChild(newTodoDescriptionInput);
+  projectHeader.appendChild(createNewTodoButton);
+  cards.appendChild(projectHeader);
 
   currentProject.allTodos.forEach((todo, index) => {
     const todoCard = document.createElement(`div`);
-    const todoName = document.createElement(`div`);
-    const todoDescription = document.createElement(`div`);
+    todoCard.classList.add(`todo-card`);
+    const todoName = document.createElement(`h4`);
+    const todoDescription = document.createElement(`p`);
 
     todoName.textContent = `${todo.name}`;
     todoDescription.textContent = `${todo.description}`;
 
     const deleteTodoButton = document.createElement(`div`);
-    deleteTodoButton.textContent = "x";
+    deleteTodoButton.textContent = "DELETE";
+    deleteTodoButton.classList.add("delete-todo");
     deleteTodoButton.addEventListener(`click`, () => {
       currentProject.allTodos.splice(index, 1);
       localStorage.setItem("allProjects", JSON.stringify(allProjects));
       updateCurrentProjectDisplay(allProjects);
     });
 
+    todoCard.appendChild(deleteTodoButton);
     todoCard.appendChild(todoName);
     todoCard.appendChild(todoDescription);
-    todoCard.appendChild(deleteTodoButton);
-    cards.appendChild(todoCard);
-  });
 
+    projectBody.appendChild(todoCard);
+  });
+  cards.appendChild(projectBody);
   document.querySelector(`.content`).appendChild(cards);
 }
