@@ -10,15 +10,13 @@
 * {
   font-family: "Roboto", Arial, Helvetica, sans-serif;
   margin: 0;
-  box-sizing: content-box;
+  box-sizing: border-box;
 }
 button {
   font-weight: bold;
 }
 body {
   height: 100vh;
-  display: flex;
-  flex-direction: column;
 }
 textarea {
   resize: none;
@@ -27,13 +25,14 @@ label {
   font-weight: bold;
 }
 main {
+  height: 95vh;
   gap: 1rem;
-  flex: 1;
   display: grid;
   grid-template-columns: 1fr 3fr;
   background-color: darkgrey;
 }
 header {
+  height: 20vh;
   background-color: darkgray;
   display: flex;
   flex-wrap: wrap;
@@ -68,16 +67,17 @@ header input {
 }
 aside {
   background-color: lightgray;
-  display: grid;
-  grid-template-rows: 1fr 5fr;
+  height: 95vh;
 }
 .aside-upper {
   background-color: darkgray;
   display: grid;
   align-items: center;
   justify-content: center;
+  height: 20vh;
 }
 .aside-projects {
+  height: 75vh;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -87,8 +87,7 @@ aside {
 }
 .right {
   background-color: lightgray;
-  display: grid;
-  grid-template-rows: 1fr 5fr;
+  height: 95vh;
 }
 .name,
 .description {
@@ -96,10 +95,12 @@ aside {
   flex-direction: column;
 }
 .content {
+  height: 75vh;
   display: flex;
+  border-radius: 5px;
   justify-content: center;
   align-items: center;
-  padding: 2rem 1.5rem;
+  overflow-y: auto;
 }
 .cards {
   display: flex;
@@ -115,7 +116,7 @@ aside {
 }
 footer {
   background-color: darkgray;
-  min-height: 2rem;
+  height: 5vh;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -132,6 +133,10 @@ footer {
   display: flex;
   flex-direction: column;
   position: relative;
+}
+.project-card > div:last-child {
+  font-style: italic;
+  align-self: flex-end;
 }
 .project-card:hover {
   cursor: pointer;
@@ -207,4 +212,50 @@ footer {
   right: 5px;
   border-radius: 5px 5px 0 0;
   padding: 2px 2px 0 2px;
+}
+@media (max-width: 720px) {
+  body,
+  main,
+  aside,
+  .aside-projects,
+  .aside-upper,
+  header,
+  .content,
+  .cards,
+  .right {
+    height: auto;
+  }
+  main {
+    display: block;
+  }
+  main {
+    min-height: 95vh;
+  }
+  header {
+    padding: 0;
+    display: block;
+    text-align: center;
+  }
+  header * {
+    margin: 5px 1rem;
+  }
+  .cards {
+    padding: 0 1rem;
+    display: block;
+    text-align: center;
+  }
+  .cards * {
+    margin: 5px 0;
+  }
+  .project-header {
+    padding: 0 1rem;
+  }
+  .project-header input,
+  .project-header textarea {
+    width: 100%;
+  }
+  .project-body {
+    grid-template-columns: none;
+    padding: 0 1rem;
+  }
 }

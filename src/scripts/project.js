@@ -5,7 +5,7 @@ export default class Project {
   constructor(newProjectName, newProjectDescription) {
     this.projectName = newProjectName;
     this.projectDescription = newProjectDescription;
-    this.projectDateCreated = format(new Date(), "yyyy-MM-dd");
+    this.projectDateCreated = format(new Date(), "yyyy-MM-dd HH:mm");
     this.allTodos = [];
     this.isViewed = true;
   }
