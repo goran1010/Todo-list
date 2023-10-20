@@ -258,4 +258,7 @@ footer {
     grid-template-columns: none;
     padding: 0 1rem;
   }
+  .delete-todo {
+    top: -23px;
+  }
 }
