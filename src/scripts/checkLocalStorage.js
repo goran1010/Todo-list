@@ -12,7 +12,6 @@ export default function (allProjects) {
     allProjects = JSON.parse(localStorage.getItem("allProjects"));
     for (let i = 0; i < allProjects.length; i++) {
       let todos = allProjects[i].allTodos;
-      let isViewed = allProjects[i].isViewed;
       let projectDateCreated = allProjects[i].projectDateCreated;
       allProjects[i] = new Project(
         allProjects[i].projectName,
@@ -25,8 +24,7 @@ export default function (allProjects) {
     updateAllProjectsDisplay(allProjects);
     updateCurrentProjectDisplay(allProjects);
     return allProjects;
-  } else {
-    createDefaultProject(allProjects);
-    return allProjects;
   }
+  createDefaultProject(allProjects);
+  return allProjects;
 }

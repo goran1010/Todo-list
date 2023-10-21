@@ -261,4 +261,8 @@ footer {
   .delete-todo {
     top: -23px;
   }
+  .todo-card {
+    word-wrap: break-word;
+    height: fit-content;
+  }
 }
